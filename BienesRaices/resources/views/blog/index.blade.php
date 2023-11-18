@@ -2,7 +2,6 @@
 
 @section('container')
     <!--
-        Aqui iria todo lo de index original
+        Aqui se colocarian las entradas
     -->
-    <h1>Index Original</h1>
 @endsection

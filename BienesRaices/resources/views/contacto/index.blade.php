@@ -2,7 +2,6 @@
 
 @section('container')
     <!--
-        Aqui iria todo lo de index original
+        Formulario de contacto
     -->
-    <h1>Index Original</h1>
 @endsection
