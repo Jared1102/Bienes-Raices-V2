@@ -1,7 +1,7 @@
 <header class="header inicio header inicio" style="background-image: url({{Vite::asset('resources/img/header.jpg')}})"">
     <div class="contenedor contenido-header">
         <div class="barra">
-            <a href="index.html">
+            <a href="{{route('main')}}">
                 <img src="{{Vite::asset('resources/img/logo.svg')}}" alt="Logotipo de Bienes Raices">
             </a>
 
@@ -12,7 +12,7 @@
             <div class="derecha">
                 <img class="dark-mode-boton" src="{{Vite::asset('resources/img/dark-mode.svg')}}">
                 <nav class="navegacion">
-                    <a href="nosotros.html">Nosotros</a>
+                    <a href="{{route('nosotros')}}">Nosotros</a>
                     <a href="anuncios.html">Anuncios</a>
                     <a href="blog.html">Blog</a>
                     <a href="contacto.html">Contacto</a>
