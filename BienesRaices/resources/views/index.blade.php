@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app_index')
 
 @section('container')
     <!--
         Aqui iria todo lo de index original
     -->
     <body>
-        @include('partials.headerindex')
         <main class="contenedor seccion">
             <h1>Más Sobre Nosotros</h1>
     
