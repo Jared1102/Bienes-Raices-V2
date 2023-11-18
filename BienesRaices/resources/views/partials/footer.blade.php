@@ -9,6 +9,6 @@
         </nav>
     </div>
 
-    <p class="copyright">Todos los derechos Reservados 2021 &copy;</p>
+    <p class="copyright">Todos los derechos Reservados 2023 &copy;</p>
 </footer>
 <!--Fin del footer-->

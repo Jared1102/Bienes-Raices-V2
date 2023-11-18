@@ -1,7 +1,7 @@
-<header class="header inicio header inicio" style="background-image: url({{Vite::asset('resources/img/header.jpg')}})"">
+<header class="header">
     <div class="contenedor contenido-header">
         <div class="barra">
-            <a href="index.html">
+            <a href="/">
                 <img src="{{Vite::asset('resources/img/logo.svg')}}" alt="Logotipo de Bienes Raices">
             </a>
 
@@ -18,10 +18,7 @@
                     <a href="contacto.html">Contacto</a>
                 </nav>
             </div>
-
             
         </div> <!--.barra-->
-
-        <h1>Venta de Casas y Departamentos  Exclusivos de Lujo</h1>
     </div>
-</header><!--Fin del Header-->
+</header>
