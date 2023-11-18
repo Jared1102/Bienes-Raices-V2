@@ -12,7 +12,7 @@
         @vite(['resources/css/app.css','resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body>
-        @include('partials.header')
+        {{-- @include('partials.header') --}}
         @yield('container')
         @include('partials.footer')       
     </body>
