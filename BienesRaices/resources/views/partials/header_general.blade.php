@@ -15,7 +15,7 @@
                     <a href="{{route('nosotros')}}">Nosotros</a>
                     <a href="anuncios.html">Anuncios</a>
                     <a href="blog.html">Blog</a>
-                    <a href="contacto.html">Contacto</a>
+                    <a href="{{route('contacto')}}">Contacto</a>
                 </nav>
             </div>
             

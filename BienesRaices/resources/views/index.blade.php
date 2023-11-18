@@ -140,7 +140,7 @@
         <section class="imagen-contacto "style="background-image: url({{Vite::asset('resources/img/encuentra.jpg')}})">
             <h2>Encuentra la casa de tus sueños</h2>
             <p>Llena el formulario de contacto y un asesor se pondrá en contacto contigo a la brevedad</p>
-            <a href="contacto.html" class="boton-amarillo">Contactános</a>
+            <a href="{{route('contacto')}}" class="boton-amarillo">Contactános</a>
         </section><!--Fin de seccion contacto-->
     
         <div class="contenedor seccion seccion-inferior">
