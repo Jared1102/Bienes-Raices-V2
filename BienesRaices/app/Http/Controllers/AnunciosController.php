@@ -27,6 +27,7 @@ class AnunciosController extends Controller
     public function create()
     {
         //
+        return view('anuncios.create');
     }
 
     /**
@@ -35,6 +36,29 @@ class AnunciosController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required|min:15',
+            'resumen' => 'required|max:15',
+            'precio' => 'required|numeric|min:0|regex:/^\d+(\.\d{2})?$/',
+            'noToilet' => 'required|integer|min:0',
+            'noCocheras' => 'required|integer|min:0',
+            'noHabitaciones' => 'required|integer|min:0',
+            'imagen' => 'required|image|mimes:jpg,png,jpeg'
+        ]);
+        $nombreOriginal=$request->file('imagen')->getClientOriginalName();
+        Propiedad::create([
+            'nombrePropiedad'=>$request->nombre,
+            'descripcion'=>$request->descripcion,
+            'precio'=>$request->precio,
+            'noToilet'=>$request->noToilet,
+            'noCocheras'=>$request->noCocheras,
+            'noHabitaciones'=>$request->noHabitaciones,
+            'imagen'=>$request->file('imagen')->getClientOriginalName(),
+            'resumen'=>$request->resumen
+        ]);
+        $request->file('imagen')->storeAs('public/propiedades',$nombreOriginal);
+        return to_route('AnunciosIndex');
     }
 
     /**

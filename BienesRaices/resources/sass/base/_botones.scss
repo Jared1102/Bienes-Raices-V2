@@ -9,3 +9,8 @@
 .boton-verde {
     @include boton($verde, inline-block);
 }
+
+.btn-create-anuncio{
+    line-height: 30px;
+    min-width: 200px;
+}

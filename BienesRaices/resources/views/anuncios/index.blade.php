@@ -6,6 +6,10 @@
     -->
     <main class="contenedor seccion">
         <h2>Casas y Depas en Venta</h2>
+        <div class="centrar-enlace">
+            <a href="{{route('AnunciosCreate')}}" class="boton-verde">Nueva propiedad</a>
+        </div>
+        
         <!--Anuncios-->
         <div class="contenedor-anuncios">
             @foreach ($propiedades as $propiedad)

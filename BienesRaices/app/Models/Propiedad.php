@@ -9,6 +9,18 @@ use Illuminate\Support\Facades\Storage;
 class Propiedad extends Model
 {
     protected $table="propiedades";
+
+    protected $fillable = [
+        'nombrePropiedad',
+        'descripcion',
+        'precio',
+        'noToilet',
+        'noCocheras',
+        'noHabitaciones',
+        'imagen',
+        'resumen'
+    ];
+
     use HasFactory;
 
     public function getUrlImagenAttribute(){
