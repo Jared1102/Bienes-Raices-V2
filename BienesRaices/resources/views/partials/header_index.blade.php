@@ -13,7 +13,7 @@
                 <img class="dark-mode-boton" src="{{Vite::asset('resources/img/dark-mode.svg')}}">
                 <nav class="navegacion">
                     <a href="{{route('nosotros')}}">Nosotros</a>
-                    <a href="anuncios.html">Anuncios</a>
+                    <a href="{{route('AnunciosIndex')}}">Anuncios</a>
                     <a href="blog.html">Blog</a>
                     <a href="{{route('contacto')}}">Contacto</a>
                 </nav>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnunciosController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,5 @@ Route::get('/nosotros',function(){
 Route::get('/contacto',function(){
     return view('contacto.index');
 })->name('contacto');
+
+Route::get('/anuncios',[AnunciosController::class,'index'])->name('AnunciosIndex');
