@@ -19,7 +19,7 @@
                 <div class="texto-entrada">
                     <a href="">
                         <h4>{{$entrada->titulo}}</h4>
-                        <p>Escrito el: <span>20/10/2023</span> por: <span>{{$entrada->user->name}}</span> </p>
+                        <p>Escrito el: <span>{{$entrada->created_at}}</span> por: <span>{{$entrada->user->name}}</span> </p>
 
                         <p>
                             {{$entrada->descripcion}}

@@ -17,9 +17,10 @@ class Entradas extends Model
         'descripcion',
         'imagen',
         'user_id',
+        'created_at',
     ];
     public function getUrlImagenAttribute(){
         
-        return $this->imagen ? asset("storage/entradas/{$this->imagen}"):null;
+        return $this->imagen ? asset("storage/blog/{$this->imagen}"):null;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnunciosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntradasController;
 /*
@@ -25,3 +26,8 @@ Route::get('/contacto',function(){
     return view('contacto.index');
 })->name('contacto');
 Route::get('/blog', [EntradasController::class,'index'])->name('indexblog');
+
+Route::get('/anuncios',[AnunciosController::class,'index'])->name('AnunciosIndex');
+Route::get('/anuncios/{anuncio}/show',[AnunciosController::class,'show'])->name('AnuncioShow');
+Route::get('/anuncios/create',[AnunciosController::class,'create'])->name('AnunciosCreate');
+Route::post('/anuncios',[AnunciosController::class,'store'])->name('AnunciosStore');
