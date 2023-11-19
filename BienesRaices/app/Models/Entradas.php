@@ -17,7 +17,7 @@ class Entradas extends Model
         'descripcion',
         'imagen',
         'user_id',
-        'created_at',
+        'resumen',
     ];
     public function getUrlImagenAttribute(){
         

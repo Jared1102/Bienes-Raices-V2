@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Entradas;//Paa
 use App\Models\User;
-
+use Illuminate\Contracts\Cache\Store;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Termwind\Components\Dd;
 class EntradasController extends Controller
 {
     /**
@@ -24,6 +27,9 @@ class EntradasController extends Controller
     public function create()
     {
         //
+        // return view('blog.create');
+        $users = User::all();
+        return view('blog.create',['users'=> $users]);
     }
 
     /**
@@ -32,6 +38,24 @@ class EntradasController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'titulo' => 'required',
+            'descripcion' => 'required|min:15',
+            'imagen' => 'required|image|mimes:jpg,png,jpeg',
+            'user' => 'required|exists:users,id',
+            'resumen' => 'required|min:15'
+        ]);
+        $entradas=$request->file('imagen')->getClientOriginalName();
+        Entradas::create([
+            'titulo'=>$request->titulo,
+            'descripcion'=>$request->descripcion,
+            'imagen'=>$request->file('imagen')->getClientOriginalName(),
+            'user_id' => $request->user,
+            'resumen'=>$request->resumen
+        ]);
+        $request->file('imagen')->storeAs('public/blog',$entradas);
+        // session()->flash('status','Se guardo el producto' . $request->titulo);
+        return to_route('indexblog');
     }
 
     /**
@@ -40,6 +64,8 @@ class EntradasController extends Controller
     public function show(string $id)
     {
         //
+        $entrada=Entradas::find($id);
+        return view('blog.show',['entrada'=>$entrada]);
     }
 
     /**

@@ -6,6 +6,12 @@
     -->
     <main class="contenedor seccion contenido-centrado">
         <h1>Nuestro Blog</h1>
+        {{-- <div class="alinear-izquierda">
+            <a href="anuncios.html" class="boton-verde">Nueva Entrada</a>
+        </div> --}}
+        <form action="{{route('BlogCreate')}}" method="GET" class="alinear-izquierda">
+            <input type="submit" value="Nueva Entrada" class="boton-verde">
+        </form>
         @foreach ($entradas as $entrada)
             <article class="entrada-blog">
                 <div class="imagen">
@@ -17,12 +23,12 @@
                 </div>
 
                 <div class="texto-entrada">
-                    <a href="">
+                    <a href="{{route('BlogShow',$entrada->id)}}">
                         <h4>{{$entrada->titulo}}</h4>
-                        <p>Escrito el: <span>{{$entrada->created_at}}</span> por: <span>{{$entrada->user->name}}</span> </p>
+                        <p>Escrito el: <span>hola</span> por: <span>{{$entrada->user->name}}</span> </p>
 
                         <p>
-                            {{$entrada->descripcion}}
+                            {{$entrada->resumen}}
                         </p>
                     </a>
                 </div>
