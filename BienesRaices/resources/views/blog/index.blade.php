@@ -12,17 +12,17 @@
                     <picture>
                         {{-- <source srcset="build/img/blog1.webp" type="image/webp">
                         <source srcset="build/img/blog1.jpg" type="image/jpeg"> --}}
-                        <img loading="lazy" src="{{Vite::asset('resources/img/blog1.jpg')}}" alt="Texto Entrada Blog">
+                        <img loading="lazy" src="{{$entrada->getUrlImagenAttribute()}}" alt="{{$entrada->imagen}}">
                     </picture>
                 </div>
 
                 <div class="texto-entrada">
                     <a href="">
-                        <h4>Terraza en el techo de tu casa</h4>
-                        <p>Escrito el: <span>20/10/2023</span> por: <span>Admin</span> </p>
+                        <h4>{{$entrada->titulo}}</h4>
+                        <p>Escrito el: <span>20/10/2023</span> por: <span>{{$entrada->user->name}}</span> </p>
 
                         <p>
-                            Consejos para construir una terraza en el techo de tu casa con los mejores materiales y ahorrando dinero
+                            {{$entrada->descripcion}}
                         </p>
                     </a>
                 </div>

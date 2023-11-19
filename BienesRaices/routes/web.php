@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\EntradasController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +24,4 @@ Route::get('/nosotros',function(){
 Route::get('/contacto',function(){
     return view('contacto.index');
 })->name('contacto');
+Route::get('/blog', [EntradasController::class,'index'])->name('indexblog');

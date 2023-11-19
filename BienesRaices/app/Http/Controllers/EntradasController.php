@@ -14,8 +14,8 @@ class EntradasController extends Controller
     public function index()
     {
         //
-        $entradas = producto::with('categoria:id,nombre')->paginate(5);
-        return view('productos.index',['productos'=>$productos]);
+        $entradas = Entradas::with('user:id,name')->paginate(5);
+        return view('blog.index',['entradas'=>$entradas]);
     }
 
     /**

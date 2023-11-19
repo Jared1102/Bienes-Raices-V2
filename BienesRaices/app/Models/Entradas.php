@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entradas extends Model
 {
-    public function rol()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -18,4 +18,8 @@ class Entradas extends Model
         'imagen',
         'user_id',
     ];
+    public function getUrlImagenAttribute(){
+        
+        return $this->imagen ? asset("storage/entradas/{$this->imagen}"):null;
+    }
 }
