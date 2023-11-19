@@ -27,3 +27,4 @@ Route::get('/contacto',function(){
 })->name('contacto');
 
 Route::get('/anuncios',[AnunciosController::class,'index'])->name('AnunciosIndex');
+Route::get('/anuncios/{anuncio}',[AnunciosController::class,'show'])->name('AnuncioShow');

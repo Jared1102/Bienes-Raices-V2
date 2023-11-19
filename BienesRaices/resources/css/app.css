@@ -1,0 +1,20 @@
+/* public/css/tu-estilo.css */
+
+/* Cambia el color principal según tu necesidad */
+.paginator a, .paginator span {
+    background-color: #E08709;
+    color: #fff;
+}
+
+/* Estilo para el enlace activo */
+.paginator .active a {
+    background-color: #fff;
+    color: #E08709;
+    border-color: #E08709;
+}
+
+/* Estilo para los enlaces de navegación (anterior y siguiente) */
+.paginator .disabled, .paginator .disabled:hover, .paginator li.prev.disabled a, .paginator li.next.disabled a {
+    color: #999;
+    cursor: not-allowed;
+}

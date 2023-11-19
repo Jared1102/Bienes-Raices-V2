@@ -43,3 +43,23 @@
         }
     }
 }
+
+.paginator {
+    a, span {
+        background-color: #E08709;
+        color: #fff;
+    }
+
+    // Estilo para el enlace activo
+    .active a {
+        background-color: #fff;
+        color: #E08709;
+        border-color: #E08709;
+    }
+
+    // Estilo para los enlaces de navegación (anterior y siguiente)
+    .disabled, &:hover, li.prev.disabled a, li.next.disabled a {
+        color: #999;
+        cursor: not-allowed;
+    }
+}

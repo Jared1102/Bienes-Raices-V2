@@ -6,7 +6,6 @@
     -->
     <main class="contenedor seccion">
         <h2>Casas y Depas en Venta</h2>
-        <img src="{{ asset('propiedades/anuncio1.jpg') }}" alt="" srcset="">
         <!--Anuncios-->
         <div class="contenedor-anuncios">
             @foreach ($propiedades as $propiedad)
@@ -16,7 +15,7 @@
                     </picture>
                     <div class="contenido-anuncio">
                         <h3>{{$propiedad->nombrePropiedad}}</h3>
-                        <p>{{$propiedad->descripcion}}</p>
+                        <p>{{$propiedad->resumen}}</p>
                         <p class="precio">${{number_format($propiedad->precio,0,'.',',',)}}</p>
                         <ul class="iconos-caracteristicas">
                             <li>
@@ -32,13 +31,12 @@
                                 <p>{{$propiedad->noHabitaciones}}</p>
                             </li>
                         </ul>
-                        <a href="#" class="boton-amarillo-block">
+                        <a href="{{route('AnuncioShow',$propiedad->id)}}" class="boton-amarillo-block">
                             Ver propiedad
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
-       <!--Fin Anuncios-->
     </main>
 @endsection

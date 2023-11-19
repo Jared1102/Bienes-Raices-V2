@@ -43,6 +43,8 @@ class AnunciosController extends Controller
     public function show(string $id)
     {
         //
+        $propiedad=Propiedad::find($id);
+        return view('anuncios.show',['propiedad'=>$propiedad]);
     }
 
     /**
