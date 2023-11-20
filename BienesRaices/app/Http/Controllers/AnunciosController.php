@@ -79,6 +79,8 @@ class AnunciosController extends Controller
     public function edit(string $id)
     {
         //
+        $propiedad=Propiedad::find($id);
+        return view('anuncios.edit',['propiedad'=>$propiedad]);
     }
 
     /**
@@ -86,7 +88,54 @@ class AnunciosController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+            'resumen' => ['required',new MaxWords(15)],
+            'precio' => 'required|numeric|min:0|regex:/^\d+(\.\d{2})?$/',
+            'noToilet' => 'required|integer|min:0',
+            'noCocheras' => 'required|integer|min:0',
+            'noHabitaciones' => 'required|integer|min:0',
+            //'imagen' => 'required|image|dimensions:min_width=385,min_height=288.5|mimes:jpg,png,jpeg'
+        ]);
         //
+        if(empty($request->file('imagen'))){
+            $propiedad=Propiedad::find($id);
+            if($propiedad){
+                $propiedad->nombrePropiedad=$request->input('nombre');
+                $propiedad->descripcion=$request->input('descripcion');
+                $propiedad->precio=$request->input('precio');
+                $propiedad->noToilet=$request->input('noToilet');
+                $propiedad->noCocheras=$request->input('noCocheras');
+                $propiedad->noHabitaciones=$request->input('noHabitaciones');
+            }
+        }else{
+            $request->validate([
+                'imagen' => 'required|image|dimensions:min_width=385,min_height=288.5|mimes:jpg,png,jpeg'
+            ]);
+            $propiedad=Propiedad::find($id);
+            if($propiedad){
+                $propiedad->nombrePropiedad=$request->input('nombre');
+                $propiedad->descripcion=$request->input('descripcion');
+                $propiedad->precio=$request->input('precio');
+                $propiedad->noToilet=$request->input('noToilet');
+                $propiedad->noCocheras=$request->input('noCocheras');
+                $propiedad->noHabitaciones=$request->input('noHabitaciones');
+                
+                //Borra el archivo actual
+                Storage::delete('public/propiedades/'.$propiedad->imagen);
+                //Obtenemos el nuevo nombre del archivo
+                $nombreOriginal=time().$request->file('imagen')->getClientOriginalName();
+                //Guardamos el nuevo nombre del archivo
+                $propiedad->imagen=$nombreOriginal;
+                //Guardamos el nuevo archivo
+                $request->file('imagen')->storeAs('public/propiedades',$nombreOriginal);
+            }
+        }
+        $propiedad->save();
+
+        return to_route('AnunciosIndex');
+        
     }
 
     /**

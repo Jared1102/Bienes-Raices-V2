@@ -30,3 +30,5 @@ Route::get('/anuncios',[AnunciosController::class,'index'])->name('AnunciosIndex
 Route::get('/anuncios/{anuncio}/show',[AnunciosController::class,'show'])->name('AnuncioShow');
 Route::get('/anuncios/create',[AnunciosController::class,'create'])->name('AnunciosCreate');
 Route::post('/anuncios',[AnunciosController::class,'store'])->name('AnunciosStore');
+Route::get('/anuncios/{anuncio}/edit',[AnunciosController::class,'edit'])->name('AnunciosEdit');
+Route::patch('/anuncios/{anuncio}',[AnunciosController::class,'update'])->name('AnunciosUpdate');
