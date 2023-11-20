@@ -26,8 +26,6 @@
 
                 <label for="imagen">Imagen</label>
                 <input type="file" id="imagen" name="imagen" value="{{old('imagen',$entrada->imagen)}}">
-                @if ($entrada->imagen)
-                @endif
                 @error('imagen')
                     <div class="alerta">
                         {{$message}}

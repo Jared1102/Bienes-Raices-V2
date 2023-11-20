@@ -25,7 +25,7 @@
                 <div class="texto-entrada">
                     <a href="{{route('BlogShow',$entrada->id)}}">
                         <h4>{{$entrada->titulo}}</h4>
-                        <p>Escrito el: <span>hola</span> por: <span>{{$entrada->user_id}}</span> </p>
+                        <p>Escrito el: <span>{{ \Carbon\Carbon::parse($entrada->updated_at)->format('d/m/Y') }}</span> por: <span>{{$entrada->user_id}}</span> </p>
 
                         <p>
                             {{$entrada->resumen}}

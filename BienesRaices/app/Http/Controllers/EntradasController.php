@@ -20,6 +20,7 @@ class EntradasController extends Controller
         // $entradas = Entradas::with('user:id,name')->paginate(5);
         // return view('blog.index',['entradas'=>$entradas]);
         $entradas=Entradas::all();
+        
         return view('blog.index',['entradas'=>$entradas]);
     }
 
@@ -89,17 +90,40 @@ class EntradasController extends Controller
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required|min:15',
-            'imagen' => 'required|image|mimes:jpg,png,jpeg',
+            // 'imagen' => 'required|image|mimes:jpg,png,jpeg',
             'resumen' => 'required|min:15'
         ]);
-        $entradas = Entradas::find($id);
-        if ($entradas) {
-            $entradas->titulo = $request->input('titulo');
-            $entradas->descripcion = $request->input('descripcion');
-            $entradas->imagen = $request->input('imagen');
-            $entradas->resumen = $request->input('resumen');
-            $entradas->save();
+        if(empty($request->file('imagen')))
+        {
+            Dd($request);
+            $entradas = Entradas::find($id);
+            if ($entradas) {
+                $entradas->titulo = $request->input('titulo');
+                $entradas->descripcion = $request->input('descripcion');
+                $entradas->resumen = $request->input('resumen');
+                // $entradas->save();
+            }
+        }else{
+            $request->validate([
+                'imagen'=> 'required|image|dimensions:min_width=,min_height=288.5|mimes:jpg,png,jpeg'
+            ]);
+            $entradas = Entradas::find($id);
+            if ($entradas) {
+                $entradas->titulo = $request->input('titulo');
+                $entradas->descripcion = $request->input('descripcion');
+                $entradas->resumen = $request->input('resumen');
+                //borrar archivo
+                Storage::delete('public/blog/'.$entradas->imagen);
+                //obtener nombre del archivo
+                $nombreOriginal=time().$request->file('imagen')->getClientOriginalName();
+                //guardar nuevo nombre
+                $entradas->imagen=$nombreOriginal;
+                //guardar archivo
+                $request->file('imagen')->storeAs('public/blog',$nombreOriginal);
+            }
         }
+        $entradas->save();
+        
         // session()->flash('status','Se actualizo la entrada' . $request->titulo);
         return to_route('indexblog');
     }
