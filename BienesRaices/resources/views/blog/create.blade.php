@@ -45,14 +45,6 @@
                     </div>
                 @enderror
                 <input type="hidden" name="imagen_actual" id="imagen_actual" value="{{ old('imagen_actual') }}">
-                
-                <label for="user_id">Autor:</label>
-                <input type="text"id="user_id" name="user_id" value="{{old('user_id')}}">
-                @error('user_id')
-                    <div class="alerta">
-                        {{$message}}
-                    </div>
-                @enderror
             </fieldset>
             <input type="submit" value="Guardar" class="boton-verde btn-create-blog">
             <a href="{{route('indexblog')}}" class="boton-amarillo btn-create-blog">Cancelar</a>

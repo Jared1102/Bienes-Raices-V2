@@ -12,6 +12,8 @@
             <div class="derecha">
                 <img class="dark-mode-boton" src="{{Vite::asset('resources/img/dark-mode.svg')}}">
                 <nav class="navegacion">
+                    <a href="{{route('IndexLogin')}}">Iniciar sesión</a>
+                    <a href="{{route('IndexRegistro')}}">Registrarse</a>
                     <a href="{{route('nosotros')}}">Nosotros</a>
                     <a href="{{route('AnunciosIndex')}}">Anuncios</a>
                     <a href="{{route('indexblog')}}">Blog</a>

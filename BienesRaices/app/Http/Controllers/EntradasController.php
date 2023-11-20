@@ -46,7 +46,6 @@ class EntradasController extends Controller
             'titulo' => 'required',
             'descripcion' => 'required|min:15',
             'imagen' => 'required|image|mimes:jpg,png,jpeg',
-            'user_id' => 'required|exists:users,id',
             'resumen' => 'required|min:15'
         ]);
         $entradas=$request->file('imagen')->getClientOriginalName();
@@ -54,7 +53,7 @@ class EntradasController extends Controller
             'titulo'=>$request->titulo,
             'descripcion'=>$request->descripcion,
             'imagen'=>$request->file('imagen')->getClientOriginalName(),
-            'user_id' => $request->user_id,
+            'user_id' => auth()->user()->id,
             'resumen'=>$request->resumen
         ]);
         $request->file('imagen')->storeAs('public/blog',$entradas);
@@ -101,6 +100,7 @@ class EntradasController extends Controller
                 $entradas->titulo = $request->input('titulo');
                 $entradas->descripcion = $request->input('descripcion');
                 $entradas->resumen = $request->input('resumen');
+                $entradas->user_id=auth()->user()->id;
                 // $entradas->save();
             }
         }else{
@@ -112,6 +112,7 @@ class EntradasController extends Controller
                 $entradas->titulo = $request->input('titulo');
                 $entradas->descripcion = $request->input('descripcion');
                 $entradas->resumen = $request->input('resumen');
+                $entradas->user_id=auth()->user()->id;
                 //borrar archivo
                 Storage::delete('public/blog/'.$entradas->imagen);
                 //obtener nombre del archivo
