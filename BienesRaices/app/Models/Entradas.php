@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Storage;
 class Entradas extends Model
 {
     public function user()
@@ -12,6 +12,7 @@ class Entradas extends Model
         return $this->belongsTo(User::class);
     }
     use HasFactory;
+    // protected $table="entradas";
     protected $fillable = [
         'titulo',
         'descripcion',
@@ -19,6 +20,7 @@ class Entradas extends Model
         'user_id',
         'resumen',
     ];
+    
     public function getUrlImagenAttribute(){
         
         return $this->imagen ? asset("storage/blog/{$this->imagen}"):null;

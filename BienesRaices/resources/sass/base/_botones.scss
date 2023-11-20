@@ -9,12 +9,16 @@
 .boton-verde {
     @include boton($verde, inline-block);
 }
-
 .btn-create-anuncio{
     line-height: 30px;
     min-width: 200px;
 }
 .btn-create-blog{
+    line-height: 2rem;
+    min-width: 100px;
+    margin-right: 1rem;
+}
+.btn-eliminar-blog{
     line-height: 2rem;
     min-width: 100px;
     margin-right: 1rem;

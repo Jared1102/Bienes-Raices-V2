@@ -32,11 +32,13 @@
                     </div>
                 @enderror
                 
-                <label for="usuario">Autor:</label>
-                @foreach ($users as $user)
-                        <input type="texto" id="usuario" name="usuario" value="{{old('user_id')}}">
-                        {{-- <option value="{{$user->id}}">{{$user->name}}</option> --}}
-                @endforeach
+                <label for="user_id">Autor:</label>
+                <input type="text"id="user_id" name="user_id" value="{{old('user_id')}}">
+                @error('user_id')
+                    <div class="alerta">
+                        {{$message}}
+                    </div>
+                @enderror
 
                 <label for="resumen">Resumen:</label>
                 <textarea name="resumen" id="resumen" value="{{old('resumen')}}"></textarea>

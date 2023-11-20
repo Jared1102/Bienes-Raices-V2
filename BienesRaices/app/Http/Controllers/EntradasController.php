@@ -17,7 +17,9 @@ class EntradasController extends Controller
     public function index()
     {
         //
-        $entradas = Entradas::with('user:id,name')->paginate(5);
+        // $entradas = Entradas::with('user:id,name')->paginate(5);
+        // return view('blog.index',['entradas'=>$entradas]);
+        $entradas=Entradas::all();
         return view('blog.index',['entradas'=>$entradas]);
     }
 
@@ -27,9 +29,9 @@ class EntradasController extends Controller
     public function create()
     {
         //
-        // return view('blog.create');
-        $users = User::all();
-        return view('blog.create',['users'=> $users]);
+        return view('blog.create');
+        // $users = User::all();
+        // return view('blog.create',['users'=> $users]);
     }
 
     /**
@@ -38,19 +40,19 @@ class EntradasController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'titulo' => 'required',
-            'descripcion' => 'required|min:15',
-            'imagen' => 'required|image|mimes:jpg,png,jpeg',
-            'user' => 'required|exists:users,id',
-            'resumen' => 'required|min:15'
-        ]);
+        // $request->validate([
+        //     'titulo' => 'required',
+        //     'descripcion' => 'required|min:15',
+        //     'imagen' => 'required|image|mimes:jpg,png,jpeg',
+            // 'user' => 'required|exists:users,id',
+        //     'resumen' => 'required|min:15'
+        // ]);
         $entradas=$request->file('imagen')->getClientOriginalName();
         Entradas::create([
             'titulo'=>$request->titulo,
             'descripcion'=>$request->descripcion,
             'imagen'=>$request->file('imagen')->getClientOriginalName(),
-            'user_id' => $request->user,
+            'user_id' => $request->user_id,
             'resumen'=>$request->resumen
         ]);
         $request->file('imagen')->storeAs('public/blog',$entradas);
@@ -89,6 +91,11 @@ class EntradasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $entradas = Entradas::find($id);
+        if ($entradas) {
+            $entradas->delete();
+        }
+        session()->flash('status','Se elimino el producto' . $entradas->titulo);
+        return to_route('indexblog');
     }
 }
