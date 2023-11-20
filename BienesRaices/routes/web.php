@@ -3,6 +3,8 @@
 use App\Http\Controllers\AnunciosController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntradasController;
+use App\Http\Controllers\GeneralController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +16,11 @@ use App\Http\Controllers\EntradasController;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('index');
-})->name('main');
+})->name('main');*/
+
+Route::get('/',[GeneralController::class,'index'])->name('main');
 
 Route::get('/nosotros',function(){
     return view('nosotros.index');

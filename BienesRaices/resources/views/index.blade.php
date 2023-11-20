@@ -29,111 +29,40 @@
     
         <section class="seccion contenedor">
             <h2>Casas y Depas en Venta</h2>
-    
+            
             <div class="contenedor-anuncios">
-                <div class="anuncio">
-                    <picture>
-                        {{-- <source srcset="{{Vite::asset('resources/img/anuncio1.webp')}}" type="image/webp">
-                        <source srcset="{{Vite::asset('resources/img/anuncio1.jpg')}}" type="image/jpeg"> --}}
-                        <img loading="lazy" src="{{Vite::asset('resources/img/anuncio1.jpg')}}" alt="anuncio">
-                    </picture>
-    
-                    <div class="contenido-anuncio">
-                        <h3>Casa de Lujo en el Lago</h3>
-                        <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
-                        <p class="precio">$3,0000,000</p>
-    
-                        <ul class="iconos-caracteristicas">
-                            <li>
-                                <img class="icono" loading="lazy" src="{{Vite::asset('resources/img/icono_wc.svg')}}" alt="icono wc">
-                                <p>3</p>
-                            </li>
-                            <li>
-                                <img class="icono" loading="lazy" src="{{Vite::asset('resources/img/icono_estacionamiento.svg')}}" alt="icono estacionamiento">
-                                <p>3</p>
-                            </li>
-                            <li>
-                                <img class="icono" loading="lazy" src="{{Vite::asset('resources/img/icono_dormitorio.svg')}}" alt="icono habitaciones">
-                                <p>4</p>
-                            </li>
-                        </ul>
-    
-                        <a href="anuncio1.html" class="boton-amarillo-block">
-                            Ver Propiedad
-                        </a>
-                    </div><!--.contenido-anuncio-->
-                </div><!--anuncio-->
-    
-                <div class="anuncio">
-                    <picture>
-                        {{-- <source srcset="{{Vite::asset('resources/img/anuncio2.webp')}}" type="image/webp">
-                        <source srcset="{{Vite::asset('resources/img/anuncio2.jpg')}}" type="image/jpeg"> --}}
-                        <img loading="lazy" src="{{Vite::asset('resources/img/anuncio2.jpg')}}" alt="anuncio">
-                    </picture>
-    
-                    <div class="contenido-anuncio">
-                        <h3>Casa terminados de lujo</h3>
-                        <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
-                        <p class="precio">$3,0000,000</p>
-    
-                        <ul class="iconos-caracteristicas">
-                            <li>
-                                <img class="icono" loading="lazy" src="{{Vite::asset('resources/img/icono_wc.svg')}}" alt="icono wc">
-                                <p>3</p>
-                            </li>
-                            <li>
-                                <img class="icono" loading="lazy" src="{{Vite::asset('resources/img/icono_estacionamiento.svg')}}" alt="icono estacionamiento">
-                                <p>3</p>
-                            </li>
-                            <li>
-                                <img class="icono" loading="lazy" src="{{Vite::asset('resources/img/icono_dormitorio.svg')}}" alt="icono habitaciones">
-                                <p>4</p>
-                            </li>
-                        </ul>
-    
-                        <a href="anuncio2.html" class="boton-amarillo-block">
-                            Ver Propiedad
-                        </a>
-                    </div><!--.contenido-anuncio-->
-                </div><!--anuncio-->
-    
-                <div class="anuncio">
-                    <picture>
-                        {{-- <source srcset="build/img/anuncio3.webp" type="image/webp">
-                        <source srcset="build/img/anuncio3.jpg" type="image/jpeg"> --}}
-                        <img loading="lazy" src="{{Vite::asset('resources/img/anuncio3.jpg')}}" alt="anuncio">
-                    </picture>
-    
-                    <div class="contenido-anuncio">
-                        <h3>Casa con alberca</h3>
-                        <p>Casa en el lago con excelente vista, acabados de lujo a un excelente precio</p>
-                        <p class="precio">$3,0000,000</p>
-    
-                        <ul class="iconos-caracteristicas">
-                            <li>
-                                <img class="icono" loading="lazy" src="{{Vite::asset('resources/img/icono_wc.svg')}}" alt="icono wc">
-                                <p>3</p>
-                            </li>
-                            <li>
-                                <img class="icono" loading="lazy" src="{{Vite::asset('resources/img/icono_estacionamiento.svg')}}" alt="icono estacionamiento">
-                                <p>3</p>
-                            </li>
-                            <li>
-                                <img class="icono" loading="lazy" src="{{Vite::asset('resources/img/icono_dormitorio.svg')}}" alt="icono habitaciones">
-                                <p>4</p>
-                            </li>
-                        </ul>
-    
-                        <a href="anuncio3.html" class="boton-amarillo-block">
-                            Ver Propiedad
-                        </a>
-                    </div><!--.contenido-anuncio-->
-                </div><!--anuncio-->
-    
-            </div> <!--.contenedor-anuncios-->
-    
+                @foreach ($propiedades as $propiedad)
+                    <div class="anuncio">
+                        <picture>
+                            <img loading="lazy" src="{{$propiedad->getUrlImagenAttribute()}}" alt="Anuncio">
+                        </picture>
+                        <div class="contenido-anuncio">
+                            <h3>{{$propiedad->nombrePropiedad}}</h3>
+                            <p>{{$propiedad->resumen}}</p>
+                            <p class="precio">${{number_format($propiedad->precio,0,'.',',',)}}</p>
+                            <ul class="iconos-caracteristicas">
+                                <li>
+                                    <img src="{{Vite::asset('resources/img/icono_wc.svg')}}" alt="icono wc" class="icono">
+                                    <p>{{$propiedad->noToilet}}</p>
+                                </li>
+                                <li>
+                                    <img src="{{Vite::asset('resources/img/icono_estacionamiento.svg')}}" alt="icono estacionamiento" class="icono">
+                                    <p>{{$propiedad->noCocheras}}</p>
+                                </li>
+                                <li>
+                                    <img src="{{Vite::asset('resources/img/icono_dormitorio.svg')}}" alt="icono dormitorio" class="icono">
+                                    <p>{{$propiedad->noHabitaciones}}</p>
+                                </li>
+                            </ul>
+                            <a href="{{route('AnuncioShow',$propiedad->id)}}" class="boton-amarillo-block">
+                                Ver propiedad
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
             <div class="alinear-derecha">
-                <a href="anuncios.html" class="boton-verde">Ver Todas</a>
+                <a href="{{route('AnunciosIndex')}}" class="boton-verde">Ver Todas</a>
             </div>
         </section><!--Fin de seccion de propiedades-->
     
@@ -146,48 +75,29 @@
         <div class="contenedor seccion seccion-inferior">
             <section class="blog">
                 <h3>Nuestro Blog</h3>
-    
-                <article class="entrada-blog">
-                    <div class="imagen">
-                        <picture>
-                            {{-- <source srcset="{{Vite::asset('resources/img/icono_dormitorio.svg')}}blog1.webp" type="image/webp">
-                            <source srcset="{{Vite::asset('resources/img/icono_dormitorio.svg')}}blog1.jpg" type="image/jpeg"> --}}
-                            <img loading="lazy" src="{{Vite::asset('resources/img/blog1.jpg')}}" alt="Texto Entrada Blog">
-                        </picture>
-                    </div>
-    
-                    <div class="texto-entrada">
-                        <a href="entrada1.html">
-                            <h4>Terraza en el techo de tu casa</h4>
-                            <p class="informacion-meta">Escrito el: <span>20/10/2021</span> por: <span>Admin</span> </p>
-    
-                            <p>
-                                Consejos para construir una terraza en el techo de tu casa con los mejores materiales y ahorrando dinero
-                            </p>
-                        </a>
-                    </div>
-                </article>
-    
-                <article class="entrada-blog">
-                    <div class="imagen">
-                        <picture>
-                            {{-- <source srcset="build/img/blog2.webp" type="image/webp">
-                            <source srcset="build/img/blog2.jpg" type="image/jpeg"> --}}
-                            <img loading="lazy" src="{{Vite::asset('resources/img/blog2.jpg')}}" alt="Texto Entrada Blog">
-                        </picture>
-                    </div>
-    
-                    <div class="texto-entrada">
-                        <a href="entrada2.html">
-                            <h4>Guía para la decoración de tu hogar</h4>
-                            <p class="informacion-meta">Escrito el: <span>20/10/2021</span> por: <span>Admin</span> </p>
-    
-                            <p>
-                                Maximiza el espacio en tu hogar con esta guia, aprende a combinar muebles y colores para darle vida a tu espacio
-                            </p>
-                        </a>
-                    </div>
-                </article>
+                @foreach ($entradas as $entrada)
+                    <article class="entrada-blog">
+                        <div class="imagen">
+                            <picture>
+                                {{-- <source srcset="build/img/blog1.webp" type="image/webp">
+                                <source srcset="build/img/blog1.jpg" type="image/jpeg"> --}}
+                                <img loading="lazy" src="{{$entrada->getUrlImagenAttribute()}}" alt="{{$entrada->imagen}}">
+                            </picture>
+                        </div>
+
+                        <div class="texto-entrada">
+                            <a href="{{route('BlogShow',$entrada->id)}}">
+                                <h4>{{$entrada->titulo}}</h4>
+                                <p>Escrito el: <span>{{ \Carbon\Carbon::parse($entrada->updated_at)->format('d/m/Y') }}</span> por: <span>{{$entrada->user_id}}</span> </p>
+
+                                <p>
+                                    {{$entrada->resumen}}
+                                </p>
+                            </a>
+                        </div>
+                    </article>
+                <!--Fin entrada-->
+                @endforeach
             </section>
     
             <section class="testimoniales">
