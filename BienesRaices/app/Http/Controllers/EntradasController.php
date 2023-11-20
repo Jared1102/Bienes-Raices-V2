@@ -40,13 +40,13 @@ class EntradasController extends Controller
     public function store(Request $request)
     {
         //
-        // $request->validate([
-        //     'titulo' => 'required',
-        //     'descripcion' => 'required|min:15',
-        //     'imagen' => 'required|image|mimes:jpg,png,jpeg',
-            // 'user' => 'required|exists:users,id',
-        //     'resumen' => 'required|min:15'
-        // ]);
+        $request->validate([
+            'titulo' => 'required',
+            'descripcion' => 'required|min:15',
+            'imagen' => 'required|image|mimes:jpg,png,jpeg',
+            'user_id' => 'required|exists:users,id',
+            'resumen' => 'required|min:15'
+        ]);
         $entradas=$request->file('imagen')->getClientOriginalName();
         Entradas::create([
             'titulo'=>$request->titulo,
