@@ -10,9 +10,22 @@
     display: flex;
     justify-content: flex-end;
 }
+.alinear-izquierda {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+.alinear {
+    display: flex;
+    justify-content: center;
+}
 
 .centrar-enlace{
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+.centrar-botones{
+    display: flex;
+    justify-content: space-around;
 }
