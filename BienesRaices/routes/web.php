@@ -32,3 +32,4 @@ Route::get('/anuncios/create',[AnunciosController::class,'create'])->name('Anunc
 Route::post('/anuncios',[AnunciosController::class,'store'])->name('AnunciosStore');
 Route::get('/anuncios/{anuncio}/edit',[AnunciosController::class,'edit'])->name('AnunciosEdit');
 Route::patch('/anuncios/{anuncio}',[AnunciosController::class,'update'])->name('AnunciosUpdate');
+Route::delete('/anuncios/{anuncio}',[AnunciosController::class,'destroy'])->name('AnunciosDestroy');

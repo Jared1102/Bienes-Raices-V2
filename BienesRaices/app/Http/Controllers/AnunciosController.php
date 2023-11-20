@@ -144,5 +144,12 @@ class AnunciosController extends Controller
     public function destroy(string $id)
     {
         //
+        $propiedad=Propiedad::find($id);
+        if($propiedad){
+            Storage::delete('public/propiedades/'.$propiedad->imagen);
+            $propiedad->delete();
+        }
+
+        return to_route('AnunciosIndex');
     }
 }
