@@ -17,7 +17,7 @@ class GeneralController extends Controller
         //
         $propiedades=Propiedad::take(3)->get();
         //$propiedades=DB::table('propiedades')->limit(3)->get();
-        $entradas=Entradas::take(2)->get();
+        $entradas=Entradas::with('user:id,username')->take(2)->get();
 
         return view('index',[
             'propiedades'=>$propiedades,

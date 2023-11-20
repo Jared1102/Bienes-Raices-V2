@@ -19,7 +19,8 @@ class EntradasController extends Controller
         //
         // $entradas = Entradas::with('user:id,name')->paginate(5);
         // return view('blog.index',['entradas'=>$entradas]);
-        $entradas=Entradas::all();
+        //$entradas=Entradas::all();
+        $entradas=Entradas::with('user:id,username')->get();
         
         return view('blog.index',['entradas'=>$entradas]);
     }
