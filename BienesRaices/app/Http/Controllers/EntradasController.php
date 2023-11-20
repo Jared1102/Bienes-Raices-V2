@@ -96,7 +96,6 @@ class EntradasController extends Controller
         ]);
         if(empty($request->file('imagen')))
         {
-            Dd($request);
             $entradas = Entradas::find($id);
             if ($entradas) {
                 $entradas->titulo = $request->input('titulo');

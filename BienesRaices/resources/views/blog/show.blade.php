@@ -11,7 +11,7 @@
         </picture>
 
         {{-- <p class="informacion-meta">Escrito el: <span>ddd</span> por: <span>{{$entrada->user->name}}</span> </p> --}}
-        <p class="informacion-meta">Escrito el: <span>{{ \Carbon\Carbon::parse($entrada->updated_at)->format('d/m/Y') }}</span> por: <span>{{$entrada->user_id}}</span> </p>
+        <p class="informacion-meta">Escrito el: <span>{{ \Carbon\Carbon::parse($entrada->updated_at)->format('d/m/Y') }}</span> por: <span>{{$entrada->user->username}}</span> </p>
 
         <div class="resumen-propiedad">
             <p>{{$entrada->descripcion}}</p>    
