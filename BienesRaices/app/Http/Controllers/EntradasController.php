@@ -76,6 +76,8 @@ class EntradasController extends Controller
     public function edit(string $id)
     {
         //
+        $entradas = Entradas::find($id);
+        return view('blog.edit',['entrada'=> $entradas]);
     }
 
     /**
@@ -84,6 +86,22 @@ class EntradasController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'titulo' => 'required',
+            'descripcion' => 'required|min:15',
+            'imagen' => 'required|image|mimes:jpg,png,jpeg',
+            'resumen' => 'required|min:15'
+        ]);
+        $entradas = Entradas::find($id);
+        if ($entradas) {
+            $entradas->titulo = $request->input('titulo');
+            $entradas->descripcion = $request->input('descripcion');
+            $entradas->imagen = $request->input('imagen');
+            $entradas->resumen = $request->input('resumen');
+            $entradas->save();
+        }
+        // session()->flash('status','Se actualizo la entrada' . $request->titulo);
+        return to_route('indexblog');
     }
 
     /**
