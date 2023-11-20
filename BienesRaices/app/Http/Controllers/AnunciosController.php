@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Propiedad;
+use App\Rules\MaxWords;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -38,15 +39,16 @@ class AnunciosController extends Controller
         //
         $request->validate([
             'nombre' => 'required',
-            'descripcion' => 'required|min:15',
-            'resumen' => 'required|max:15',
+            'descripcion' => 'required',
+            'resumen' => ['required',new MaxWords(15)],
             'precio' => 'required|numeric|min:0|regex:/^\d+(\.\d{2})?$/',
             'noToilet' => 'required|integer|min:0',
             'noCocheras' => 'required|integer|min:0',
             'noHabitaciones' => 'required|integer|min:0',
-            'imagen' => 'required|image|mimes:jpg,png,jpeg'
+            'imagen' => 'required|image|dimensions:min_width=385,min_height=288.5|mimes:jpg,png,jpeg'
         ]);
-        $nombreOriginal=$request->file('imagen')->getClientOriginalName();
+        
+        $nombreOriginal=time().$request->file('imagen')->getClientOriginalName();
         Propiedad::create([
             'nombrePropiedad'=>$request->nombre,
             'descripcion'=>$request->descripcion,
@@ -54,7 +56,7 @@ class AnunciosController extends Controller
             'noToilet'=>$request->noToilet,
             'noCocheras'=>$request->noCocheras,
             'noHabitaciones'=>$request->noHabitaciones,
-            'imagen'=>$request->file('imagen')->getClientOriginalName(),
+            'imagen'=>$nombreOriginal,
             'resumen'=>$request->resumen
         ]);
         $request->file('imagen')->storeAs('public/propiedades',$nombreOriginal);
