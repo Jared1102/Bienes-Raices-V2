@@ -14,11 +14,16 @@ class ChatController extends Controller
     public function obtenerRespuesta($texto)
     {
 
-        $respuesta=Respuestas::with('pregunta')->whereHas(
+        $respuestas=Respuestas::with('pregunta')->whereHas(
             'pregunta', function ($query) use ($texto){
                 $query->where('pregunta','LIKE',"%$texto%");
             }
-        )->get()->random();
+        )->get();
+        if($respuestas->isEmpty()){
+            $respuesta="No tengo respuesta a eso.";
+        }else{
+            $respuesta=$respuestas->random();
+        }
 
         return response()->json($respuesta);
     }

@@ -3,11 +3,17 @@
     <div id="chat">
 
     </div>
-    <form method="POST">
+    <form method="POST" id="form-chat">
         @csrf
         <input type="text" name="mensaje" id="mensaje">
         <input type="button" value="Enviar" onclick="enviarMensaje()">
     </form>
+    @auth
+        @if (auth()->user()->rol=="Administrador")
+        <a href="" id="agregar-preguntas">Agregar preguntas y respuestas</a>
+        @endif
+    @endauth
+    
 </div>
 
 <script>
@@ -36,23 +42,23 @@ function enviarMensaje(){
     mensajes.push(mensaje.value)
     mostrarMensajes(`${usuario}: ${mensaje.value}`);*/
     let mensaje = document.getElementById('mensaje').value;
+    let txtMensaje=document.getElementById('mensaje');
         mostrarMensajes(`${usuario}: ${mensaje}`);
         // Hacer una solicitud al servidor para obtener la respuesta
         fetch(`{{ route('chatBot', ['pregunta' => ':mensaje']) }}`.replace(':mensaje', mensaje))
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                if (data) {
+                if (data.respuesta) {
                     // Si se encuentra una respuesta, mostrarla en el chat
                     
-                    mostrarMensajes(`Bot: ${data.respuesta}`);
+                    mostrarMensajes(`HomeChat: ${data.respuesta}`);
                 } else {
                     // Si no se encuentra una respuesta, simplemente mostrar el mensaje del usuario
-                    mostrarMensajes(`${usuario}: ${mensaje}`);
+                    mostrarMensajes(`HomeChat: ${data}`);
                 }
             })
             .catch(error => console.error('Error al obtener respuesta:', error));
-    mensaje.value='';
+    txtMensaje.value='';
 }
 function mostrarMensajes(mensaje){
     chat=document.getElementById('chat');

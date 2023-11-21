@@ -47,5 +47,37 @@
 
 #chat p{
     font-size: 16px;
+    color: black;
     margin: 0px;
 }
+
+#form-chat {
+    margin-top: 10px;
+    display: flex;
+}
+
+#form-chat input[type="text"] {
+    flex: 1;
+    padding: 5px;
+}
+
+#form-chat input[type="button"] {
+    background-color: #619800;
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#agregar-preguntas {
+    display: block;
+    text-align: center;
+    color: #E08709;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+#agregar-preguntas:hover {
+    text-decoration: underline;
+}
+
