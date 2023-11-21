@@ -10,11 +10,11 @@
             <a href="anuncios.html" class="boton-verde">Nueva Entrada</a>
         </div> --}}
         @auth
-        @if (auth()->user()->rol=="Adminsitrador")
-        <form action="{{route('BlogCreate')}}" method="GET" class="alinear-izquierda">
-            <input type="submit" value="Nueva Entrada" class="boton-verde">
-        </form>
-        @endif
+            @if (auth()->user()->rol=="Administrador")
+                <form action="{{route('BlogCreate')}}" method="GET" class="alinear-izquierda">
+                    <input type="submit" value="Nueva Entrada" class="boton-verde">
+                </form>
+            @endif
         @endauth
         
         @foreach ($entradas as $entrada)
