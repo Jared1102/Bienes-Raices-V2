@@ -16,7 +16,8 @@
         <div class="resumen-propiedad">
             <p>{{$entrada->descripcion}}</p>    
         </div>
-
+        @auth
+        @if (auth()->user()->rol=="Adminsitrador")
         <div class="centrar-botones">
             <a class="boton-verde alinear-izquierda" href="{{route('BlogEdit',$entrada->id)}}">Editar</a>
             <form class="alinear-izquierda" action="{{route('BlogDestroy',$entrada->id)}}" method="post">
@@ -24,6 +25,10 @@
                 <button class="boton-amarillo-block">Eliminar</button>
             </form>
         </div>
+        @endif
+        
+        @endauth
+        
         
     </main>
 @endsection

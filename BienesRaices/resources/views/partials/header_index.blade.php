@@ -12,12 +12,22 @@
             <div class="derecha">
                 <img class="dark-mode-boton" src="{{Vite::asset('resources/img/dark-mode.svg')}}">
                 <nav class="navegacion">
-                    <a href="{{route('IndexLogin')}}">Iniciar sesión</a>
-                    <a href="{{route('IndexRegistro')}}">Registrarse</a>
+                    @guest
+                        <a href="{{route('IndexLogin')}}">Iniciar sesión</a>
+                        <a href="{{route('IndexRegistro')}}">Registrarse</a>
+                    @endguest
+                    
                     <a href="{{route('nosotros')}}">Nosotros</a>
                     <a href="{{route('AnunciosIndex')}}">Anuncios</a>
                     <a href="{{route('indexblog')}}">Blog</a>
                     <a href="{{route('contacto')}}">Contacto</a>
+                    @auth
+                        <form action="{{route('Logout')}}" method="post">
+                            @csrf
+                            <input type="submit" value="Cerrar sesión">
+                        </form>
+                    @endauth
+                    
                 </nav>
             </div>
 

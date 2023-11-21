@@ -54,3 +54,4 @@ Route::get('/login',[UserController::class,'indexLogin'])->name('IndexLogin');
 Route::post('/login',[UserController::class,'login'])->name('Login');
 Route::get('/registro',[UserController::class,'indexRegistro'])->name('IndexRegistro');
 Route::post('/registro',[UserController::class,'registro'])->name('Registro');
+Route::post('/logout',[UserController::class,'logout'])->name('Logout');

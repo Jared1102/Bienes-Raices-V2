@@ -25,12 +25,18 @@
             <p>{{$propiedad->descripcion}}</p>
         </div>
 
-        <div class="centrar-botones">
-            <a class="boton-verde alinear-izquierda" href="{{route('AnunciosEdit',$propiedad->id)}}">Editar</a>
-            <form class="alinear-izquierda" action="{{route('AnunciosDestroy',$propiedad->id)}}" method="post">
-                @csrf @method('DELETE')
-                <button class="boton-amarillo-block">Eliminar</button>
-            </form>
-        </div>
+        @auth
+            @if (auth()->user()->rol=="Administrador")
+            <div class="centrar-botones">
+                <a class="boton-verde alinear-izquierda" href="{{route('AnunciosEdit',$propiedad->id)}}">Editar</a>
+                <form class="alinear-izquierda" action="{{route('AnunciosDestroy',$propiedad->id)}}" method="post">
+                    @csrf @method('DELETE')
+                    <button class="boton-amarillo-block">Eliminar</button>
+                </form>
+            </div>
+            @endif
+        
+        @endauth
+        
     </main>
 @endsection

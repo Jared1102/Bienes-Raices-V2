@@ -6,9 +6,14 @@
     -->
     <main class="contenedor seccion">
         <h2>Casas y Depas en Venta</h2>
-        <div class="centrar-enlace">
-            <a href="{{route('AnunciosCreate')}}" class="boton-verde">Nueva propiedad</a>
-        </div>
+        @auth
+            @if (auth()->user()->rol=="Administrador")
+            <div class="centrar-enlace">
+                <a href="{{route('AnunciosCreate')}}" class="boton-verde">Nueva propiedad</a>
+            </div>
+            @endif
+        @endauth
+        
         
         <!--Anuncios-->
         <div class="contenedor-anuncios">
