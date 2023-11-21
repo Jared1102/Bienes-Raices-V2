@@ -49,14 +49,15 @@ class EntradasController extends Controller
             'resumen' => 'required|min:15'
         ]);
         $entradas=$request->file('imagen')->getClientOriginalName();
+
         Entradas::create([
             'titulo'=>$request->titulo,
             'descripcion'=>$request->descripcion,
-            'imagen'=>$request->file('imagen')->getClientOriginalName(),
+            'imagen'=>time().$request->file('imagen')->getClientOriginalName(),
             'user_id' => auth()->user()->id,
             'resumen'=>$request->resumen
         ]);
-        $request->file('imagen')->storeAs('public/blog',$entradas);
+        $request->file('imagen')->storeAs('public/blog',time().$entradas);
         // session()->flash('status','Se guardo el producto' . $request->titulo);
         return to_route('indexblog');
     }

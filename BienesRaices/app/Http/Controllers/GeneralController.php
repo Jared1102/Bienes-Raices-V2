@@ -15,9 +15,9 @@ class GeneralController extends Controller
     public function index()
     {
         //
-        $propiedades=Propiedad::take(3)->get();
+        $propiedades=Propiedad::inRandomOrder()->take(3)->get();
         //$propiedades=DB::table('propiedades')->limit(3)->get();
-        $entradas=Entradas::with('user:id,username')->take(2)->get();
+        $entradas=Entradas::with('user:id,username')->inRandomOrder()->take(2)->get();
 
         return view('index',[
             'propiedades'=>$propiedades,
