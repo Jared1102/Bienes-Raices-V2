@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnunciosController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EntradasController;
 use App\Http\Controllers\GeneralController;
@@ -66,3 +67,6 @@ Route::post('/login',[UserController::class,'login'])->name('Login');
 Route::get('/registro',[UserController::class,'indexRegistro'])->name('IndexRegistro');
 Route::post('/registro',[UserController::class,'registro'])->name('Registro');
 Route::post('/logout',[UserController::class,'logout'])->name('Logout');
+
+//Chatbot
+Route::get('/chatbot/{pregunta}',[ChatController::class,'obtenerRespuesta'])->name('chatBot');

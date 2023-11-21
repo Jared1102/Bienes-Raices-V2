@@ -18,3 +18,34 @@
     color: #999;
     cursor: not-allowed;
 }
+
+.contenedor-chat {
+    position: fixed;
+    background-color: black;
+    width: 350px;
+    bottom: 20px;
+    right: 20px;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.contenedor-chat h4{
+    margin: 5px;
+}
+
+#chat{
+    width: 300px;
+    background-color: #ccc;
+    margin: 5px auto;
+    max-height: 252px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#chat p{
+    font-size: 16px;
+    margin: 0px;
+}

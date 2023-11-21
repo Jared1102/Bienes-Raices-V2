@@ -14,7 +14,8 @@
     <body>
         @include('partials.header_index')
         @yield('container')
+        @include('partials.chatbot')
         @include('partials.footer')      
-        @yield('js') 
+        @yield('js')
     </body>
 </html>
