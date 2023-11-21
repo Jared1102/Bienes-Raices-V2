@@ -16,8 +16,8 @@
                     @endif
                     <div class="contenedor-input">
                         <span class="icono"><i class="fa-solid fa-user"></i></i></span>
-                        <input type="text" required>
-                        <label for="#">Usuario</label>
+                        <input type="text" name="username" id="username" required>
+                        <label for="username">Usuario</label>
                         @error('username')
                             <div class="alerta">
                                 {{$message}}
@@ -27,8 +27,8 @@
     
                     <div class="contenedor-input">
                         <span class="icono"><i class="fa-solid fa-lock"></i></i></span>
-                        <input type="password" required>
-                        <label for="#">Contraseña</label>
+                        <input type="password" name="password" id="password" required>
+                        <label for="password">Contraseña</label>
                         @error('password')
                             <div class="alerta">
                                 {{$message}}
