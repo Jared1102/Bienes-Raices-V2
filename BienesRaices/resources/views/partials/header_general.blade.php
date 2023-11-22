@@ -23,9 +23,9 @@
                     <a href="{{route('contacto')}}">Contacto</a>
 
                     @auth
-                        <form action="{{route('Logout')}}" method="post">
+                        <form action="{{route('Logout')}}" method="post" class="">
                             @csrf
-                            <input type="submit" value="Cerrar sesión">
+                            <input type="submit" value="Cerrar sesión" class="btn-sesion">
                         </form>
                     @endauth
                         
